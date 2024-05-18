@@ -184,9 +184,9 @@ GameObject:
   - component: {fileID: 6778230812702466134}
   - component: {fileID: 3270479660768804961}
   - component: {fileID: 3417171392267927725}
-  - component: {fileID: 650867637318828322}
   - component: {fileID: 2330438717411494309}
   - component: {fileID: 6424347776193208980}
+  - component: {fileID: 1061250172870537306}
   m_Layer: 0
   m_Name: AgentRed
   m_TagString: Untagged
@@ -203,7 +203,7 @@ Transform:
   m_GameObject: {fileID: 2294825654964763267}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.5, y: 1.1, z: 0}
+  m_LocalPosition: {x: -7.5, y: 1.1, z: -0.0000000021962023}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -251,8 +251,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BrainParameters:
-    VectorObservationSize: 3
-    NumStackedVectorObservations: 1
+    VectorObservationSize: 2
+    NumStackedVectorObservations: 5
     m_ActionSpec:
       m_NumContinuousActions: 2
       BranchSizes: 
@@ -262,13 +262,49 @@ MonoBehaviour:
     hasUpgradedBrainParametersWithActionSpec: 1
   m_Model: {fileID: 0}
   m_InferenceDevice: 0
-  m_BehaviorType: 1
+  m_BehaviorType: 0
   m_BehaviorName: HockeyAgent
   TeamId: 0
   m_UseChildSensors: 1
   m_UseChildActuators: 1
   m_ObservableAttributeHandling: 0
---- !u!114 &650867637318828322
+--- !u!114 &2330438717411494309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2294825654964763267}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a5c9d521e5ef4759a8246a07d52221e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DecisionPeriod: 5
+  TakeActionsBetweenDecisions: 1
+--- !u!114 &6424347776193208980
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2294825654964763267}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09f8535a87836b94e918e079f90ac29e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agentParameters:
+    maxStep: 0
+  hasUpgradedFromAgentParameters: 1
+  MaxStep: 200000
+  puck: {fileID: 7310280578544535430}
+  enemy: {fileID: 3340791893382215611}
+  OptimalPosition: {fileID: 9169888737711168395}
+  rotationSpeed: 100
+  moveSpeed: 5
+  timeLimit: 10
+--- !u!114 &1061250172870537306
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -294,41 +330,6 @@ MonoBehaviour:
   rayMissColor: {r: 1, g: 1, b: 1, a: 1}
   m_StartVerticalOffset: 0
   m_EndVerticalOffset: 0
---- !u!114 &2330438717411494309
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2294825654964763267}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a5c9d521e5ef4759a8246a07d52221e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DecisionPeriod: 3
-  TakeActionsBetweenDecisions: 1
---- !u!114 &6424347776193208980
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2294825654964763267}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 09f8535a87836b94e918e079f90ac29e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  agentParameters:
-    maxStep: 0
-  hasUpgradedFromAgentParameters: 1
-  MaxStep: 20000
-  puck: {fileID: 7310280578544535430}
-  OptimalPosition: {fileID: 9169888737711168395}
-  rotationSpeed: 100
-  moveSpeed: 25
-  timeLimit: 10
 --- !u!1 &2304938073249221002
 GameObject:
   m_ObjectHideFlags: 0
@@ -339,7 +340,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3338408454696700424}
   m_Layer: 0
-  m_Name: Game
+  m_Name: GameTrainingVision
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -795,16 +796,16 @@ GameObject:
   - component: {fileID: 3715924164122164903}
   - component: {fileID: 3448396291495420039}
   - component: {fileID: 2350796641219581989}
-  - component: {fileID: 7345364419421958631}
   - component: {fileID: 8654334445966565957}
   - component: {fileID: 7594830364942531192}
+  - component: {fileID: 2170645837382482180}
   m_Layer: 0
   m_Name: AgentBlue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &3715924164122164903
 Transform:
   m_ObjectHideFlags: 0
@@ -814,7 +815,7 @@ Transform:
   m_GameObject: {fileID: 3340791893382215611}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 6.61, y: 1.1, z: 0}
+  m_LocalPosition: {x: 7.5, y: 1.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -862,7 +863,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BrainParameters:
-    VectorObservationSize: 5
+    VectorObservationSize: 2
     NumStackedVectorObservations: 5
     m_ActionSpec:
       m_NumContinuousActions: 2
@@ -875,36 +876,10 @@ MonoBehaviour:
   m_InferenceDevice: 0
   m_BehaviorType: 0
   m_BehaviorName: HockeyAgent
-  TeamId: 0
+  TeamId: 1
   m_UseChildSensors: 1
   m_UseChildActuators: 1
   m_ObservableAttributeHandling: 0
---- !u!114 &7345364419421958631
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3340791893382215611}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bb6b867a41448888c1cd4f99643ad71, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SensorName: RayPerceptionSensor_Off
-  m_DetectableTags: []
-  m_RaysPerDirection: 15
-  m_MaxRayDegrees: 180
-  m_SphereCastRadius: 0.2
-  m_RayLength: 20
-  m_RayLayerMask:
-    serializedVersion: 2
-    m_Bits: 4294967291
-  m_ObservationStacks: 1
-  rayHitColor: {r: 1, g: 0, b: 0, a: 1}
-  rayMissColor: {r: 1, g: 1, b: 1, a: 1}
-  m_StartVerticalOffset: 0
-  m_EndVerticalOffset: 0
 --- !u!114 &8654334445966565957
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -936,10 +911,37 @@ MonoBehaviour:
   hasUpgradedFromAgentParameters: 1
   MaxStep: 200000
   puck: {fileID: 7310280578544535430}
+  enemy: {fileID: 2294825654964763267}
   OptimalPosition: {fileID: 2410906252793735312}
   rotationSpeed: 100
   moveSpeed: 5
   timeLimit: 10
+--- !u!114 &2170645837382482180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3340791893382215611}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bb6b867a41448888c1cd4f99643ad71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SensorName: RayPerceptionSensor
+  m_DetectableTags: []
+  m_RaysPerDirection: 15
+  m_MaxRayDegrees: 180
+  m_SphereCastRadius: 0.2
+  m_RayLength: 20
+  m_RayLayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967291
+  m_ObservationStacks: 1
+  rayHitColor: {r: 1, g: 0, b: 0, a: 1}
+  rayMissColor: {r: 1, g: 1, b: 1, a: 1}
+  m_StartVerticalOffset: 0
+  m_EndVerticalOffset: 0
 --- !u!1 &3465881260762267764
 GameObject:
   m_ObjectHideFlags: 0
@@ -1783,6 +1785,7 @@ GameObject:
   - component: {fileID: 3912719686421945800}
   - component: {fileID: 8080702811485045994}
   - component: {fileID: 1631186689337379175}
+  - component: {fileID: 5409590068460736960}
   m_Layer: 0
   m_Name: puck
   m_TagString: Puck
@@ -1904,6 +1907,24 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &5409590068460736960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7310280578544535430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1795a3d1867b4714484bfb89d3e26ebc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerAgent: {fileID: 6424347776193208980}
+  enemyAgent: {fileID: 7594830364942531192}
+  playerGoal: {fileID: 7862801445665580531}
+  enemyGoal: {fileID: 4520143800969771361}
+  playerOptimalPosition: {fileID: 9169888737711168395}
+  enemyOptimalPosition: {fileID: 2410906252793735312}
 --- !u!1 &7310982782724473722
 GameObject:
   m_ObjectHideFlags: 0
@@ -2165,13 +2186,14 @@ GameObject:
   - component: {fileID: 8981062258114315645}
   - component: {fileID: 2330205175767962762}
   - component: {fileID: 1013303430160379656}
+  - component: {fileID: 4461316182540152345}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8981062258114315645
 Transform:
   m_ObjectHideFlags: 0
@@ -2368,6 +2390,32 @@ MonoBehaviour:
   m_StartingSingleGrabTransformers: []
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
+--- !u!114 &4461316182540152345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8449505832392525119}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bb6b867a41448888c1cd4f99643ad71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SensorName: RayPerceptionSensor
+  m_DetectableTags: []
+  m_RaysPerDirection: 15
+  m_MaxRayDegrees: 180
+  m_SphereCastRadius: 0.2
+  m_RayLength: 20
+  m_RayLayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967291
+  m_ObservationStacks: 1
+  rayHitColor: {r: 1, g: 0, b: 0, a: 1}
+  rayMissColor: {r: 1, g: 1, b: 1, a: 1}
+  m_StartVerticalOffset: 0
+  m_EndVerticalOffset: 0
 --- !u!1 &8759325184137766452
 GameObject:
   m_ObjectHideFlags: 0

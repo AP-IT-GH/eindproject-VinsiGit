@@ -1,0 +1,5 @@
+conda activate unity_ml
+
+mlagents-learn Assets/config/Nick/HockeyAgent.yaml --run-id=HockeyAgent --force
+
+tensorboard --logdir results
