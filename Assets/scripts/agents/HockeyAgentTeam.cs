@@ -8,7 +8,7 @@ using Unity.MLAgents.Policies;
 
 using Random = UnityEngine.Random;
 
-public class HockeyAgent : Agent
+public class HockeyAgentTeam : Agent
 {
     public GameObject puck;
     public GameObject enemy;
@@ -17,7 +17,6 @@ public class HockeyAgent : Agent
     public float rotationSpeed = 100f;
     public float moveSpeed = 5f;
 
-    private NPCKeeper keeperScript;
 
     private Rigidbody agentRb;
     private Transform agentTf;
@@ -39,25 +38,19 @@ public class HockeyAgent : Agent
         agentTf = GetComponent<Transform>();
         puckRb = puck.GetComponent<Rigidbody>(); // Get the Rigidbody component from the puck
         puckTf = puck.GetComponent<Transform>();
-        if (enemy.GetComponent<NPCKeeper>())
-        {
-            keeperScript = enemy.GetComponent<NPCKeeper>();
-        }
+
         lastAgentPosition = agentRb.position;
-        startPosition = agentTf.localPosition;
+        startPosition = agentTf.position;
 
         teamId = GetComponent<BehaviorParameters>().TeamId;
     }
 
     public override void OnEpisodeBegin()
     {
-        if (keeperScript)
-        {
-            keeperScript.Reset();
-        }
+
         // Reset puck's position
         puckTf.localPosition = new Vector3(Random.value * 5, 0.7f, Random.value * 7 - 3.5f);
-        agentTf.localPosition = startPosition;
+        agentTf.position = startPosition;
         agentRb.velocity = Vector3.zero;
 
         // Reset the puck's velocity
@@ -70,7 +63,8 @@ public class HockeyAgent : Agent
         puckTf.localRotation = randomRotation;
 
         // Define the magnitude factor for the force
-        float forceMagnitude = Random.Range(50f, 100f); // You can adjust this value as needed
+        int direction = Random.Range(0, 2) * 2 - 1; // This will give you either -1 or 1
+        float forceMagnitude = direction * Random.Range(50f, 100f); // You can adjust this value as needed
 
         float randomRotationAngle = Random.Range(-2f, 2f);
         Vector3 randomForce = new Vector3(1f, 0f, randomRotationAngle) * forceMagnitude;
