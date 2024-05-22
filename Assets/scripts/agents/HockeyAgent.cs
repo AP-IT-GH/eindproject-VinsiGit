@@ -67,10 +67,6 @@ public class HockeyAgent : Agent
         puckRb.AddForce(randomForce, ForceMode.Impulse);
 
         scoreMade = false;
-
-        // Start the ScoreCheck coroutine
-        StartCoroutine(ScoreCheck());
-
     }
 
     public override void CollectObservations(VectorSensor sensor) //3 normal, 8 with puck , 9 now
@@ -107,8 +103,6 @@ public class HockeyAgent : Agent
         // Apply the movement forces
         agentRb.AddForce(moveDirectionSW, ForceMode.VelocityChange);
         agentRb.AddForce(moveDirectionFW, ForceMode.VelocityChange);
-        // Add any reward logic here based on the actions
-        float distanceToTarget = Vector3.Distance(agentTf.localPosition, OptimalPosition.position);
     
         if (teamId == 0 && agentTf.localPosition.x >-1.0f) // If the agent is on team 0 and has moved to the positive side of the table
         {
@@ -118,8 +112,6 @@ public class HockeyAgent : Agent
         {
             agentTf.localPosition = new Vector3(1.0f, agentTf.localPosition.y, agentTf.localPosition.z); // Reset the x position to 0
         }
-        
-        float distanceToPuck = Vector3.Distance(agentTf.localPosition, puck.transform.position);
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -127,7 +119,6 @@ public class HockeyAgent : Agent
         if (collision.transform.CompareTag("Puck"))
         {
             scoreMade = true;
-            StopCoroutine(ScoreCheck());
 
             AddReward(0.1f);
             // Calculate the movement vector of the parent object
@@ -151,18 +142,4 @@ public class HockeyAgent : Agent
         continuousActionsOut[0] = Input.GetAxis("Horizontal");
         continuousActionsOut[1] = Input.GetAxis("Vertical");
     }
-
-    private System.Collections.IEnumerator ScoreCheck()
-    {
-        // Wait for the time limit
-        yield return new WaitForSeconds(timeLimit);
-
-        // If no score was made, give a -0.1 reward
-        if (!scoreMade)
-        {
-            // AddReward(-0.1f);
-            EndEpisode();
-        }
-    }
-    
 }
