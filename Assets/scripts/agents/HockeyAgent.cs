@@ -13,10 +13,11 @@ public class HockeyAgent : Agent
     public GameObject puck;
     public GameObject enemy;
 
-    public Transform OptimalPosition;
+    public Vector3 startPosition;
     public float rotationSpeed = 100f;
     public float moveSpeed = 5f;
-    private float timeLimit = 20f; // Set this to the amount of time you want
+
+    public NPCKeeper keeperScript;
 
     private Rigidbody agentRb;
     private Transform agentTf;
@@ -24,8 +25,6 @@ public class HockeyAgent : Agent
     private Rigidbody puckRb; // Reference to the Rigidbody component of the puck
     private Transform puckTf;
     private Vector3 lastAgentPosition; // Store the agent's last position for collision detection
-
-    private bool scoreMade;
 
     private int teamId;
 
@@ -38,15 +37,20 @@ public class HockeyAgent : Agent
         agentTf = GetComponent<Transform>();
         puckRb = puck.GetComponent<Rigidbody>(); // Get the Rigidbody component from the puck
         puckTf = puck.GetComponent<Transform>();
+        keeperScript = enemy.GetComponent<NPCKeeper>();
         lastAgentPosition = agentRb.position;
+        startPosition = agentTf.localPosition;
 
-        teamId  = GetComponent<BehaviorParameters>().TeamId;
+    teamId  = GetComponent<BehaviorParameters>().TeamId;
     }
     
     public override void OnEpisodeBegin()
     {
+        keeperScript.Reset();
         // Reset puck's position
         puckTf.localPosition = new Vector3(Random.value * 5, 0.7f, Random.value * 7 - 3.5f);
+        agentTf.localPosition = startPosition;
+        agentRb.velocity = Vector3.zero;
 
         // Reset the puck's velocity
         puckRb.velocity = Vector3.zero;
@@ -65,8 +69,6 @@ public class HockeyAgent : Agent
 
         // Apply the force to the puck
         puckRb.AddForce(randomForce, ForceMode.Impulse);
-
-        scoreMade = false;
     }
 
     public override void CollectObservations(VectorSensor sensor) //3 normal, 8 with puck , 9 now
@@ -118,8 +120,6 @@ public class HockeyAgent : Agent
     {
         if (collision.transform.CompareTag("Puck"))
         {
-            scoreMade = true;
-
             AddReward(0.1f);
             // Calculate the movement vector of the parent object
             Vector3 agentMovement = agentRb.position - lastAgentPosition;
