@@ -48,24 +48,20 @@ public class HockeyAgent : Agent
         // Reset puck's position
         puckTf.localPosition = new Vector3(Random.value * 5, 0.7f, Random.value * 7 - 3.5f);
 
+        // Reset the puck's velocity
+        puckRb.velocity = Vector3.zero;
+
         // Random rotation between 50 and 60 degrees
-        float randomRotationAngle = Random.Range(50f, 60f);
-        Quaternion randomRotation = Quaternion.Euler(0f, randomRotationAngle, 0f);
+        Quaternion randomRotation = Quaternion.Euler(0f, 0f, 0f);
 
         // Apply random rotation to the puck
         puckTf.localRotation = randomRotation;
 
         // Define the magnitude factor for the force
-        float forceMagnitude = 5f; // You can adjust this value as needed
+        float forceMagnitude = Random.Range(50f, 100f); // You can adjust this value as needed
 
-        // Generate a random direction vector
-        Vector3 randomDirection = new Vector3(Random.Range(-1f, 1f), 0f, Random.Range(-1f, 1f)).normalized;
-
-        // Apply the magnitude factor to the direction vector
-        Vector3 randomForce = randomDirection * forceMagnitude;
-
-        // Reset the puck's velocity
-        puckRb.velocity = Vector3.zero;
+        float randomRotationAngle = Random.Range(-2f, 2f);
+        Vector3 randomForce = new Vector3(1f, 0f, randomRotationAngle) * forceMagnitude;
 
         // Apply the force to the puck
         puckRb.AddForce(randomForce, ForceMode.Impulse);
