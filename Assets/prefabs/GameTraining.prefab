@@ -185,7 +185,7 @@ GameObject:
   - component: {fileID: 3270479660768804961}
   - component: {fileID: 5309794978681607958}
   m_Layer: 0
-  m_Name: AgentRed
+  m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -716,7 +716,7 @@ GameObject:
   - component: {fileID: 8654334445966565957}
   - component: {fileID: 7594830364942531192}
   m_Layer: 0
-  m_Name: AgentBlue
+  m_Name: Agent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1252,7 +1252,7 @@ GameObject:
   - component: {fileID: 550142165451886762}
   - component: {fileID: 5226229404613203877}
   m_Layer: 0
-  m_Name: GoalBlue
+  m_Name: GoalAgent
   m_TagString: Goal_Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1808,12 +1808,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1795a3d1867b4714484bfb89d3e26ebc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 2294825654964763267}
-  enemy: {fileID: 3340791893382215611}
-  playerGoal: {fileID: 7862801445665580531}
-  enemyGoal: {fileID: 4520143800969771361}
-  playerOptimalPosition: {fileID: 9169888737711168395}
-  enemyOptimalPosition: {fileID: 2410906252793735312}
+  player: {fileID: 3340791893382215611}
+  playerGoal: {fileID: 4520143800969771361}
+  enemyGoal: {fileID: 7862801445665580531}
+  reward: 1
 --- !u!1 &7310982782724473722
 GameObject:
   m_ObjectHideFlags: 0
@@ -1972,7 +1970,7 @@ GameObject:
   - component: {fileID: 490275641898149494}
   - component: {fileID: 86736990546394628}
   m_Layer: 0
-  m_Name: GoalRed
+  m_Name: GoalEnemy
   m_TagString: Goal_Agent
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
