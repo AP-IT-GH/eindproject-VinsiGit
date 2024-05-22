@@ -10,15 +10,19 @@ public class NPCKeeper : MonoBehaviour
     private Rigidbody keeperRb;
     private Transform keeperTf;
 
+    private Vector3 startPosition;
+
     // Start is called before the first frame update
     void Start()
     {
         keeperRb = GetComponent<Rigidbody>();
         keeperTf = GetComponent<Transform>();
+
+        startPosition = keeperTf.localPosition;
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (Random.Range(0f, 60f) <= 1)
         {
@@ -30,5 +34,11 @@ public class NPCKeeper : MonoBehaviour
         {
             keeperTf.localPosition = new Vector3(-1.0f, keeperTf.localPosition.y, keeperTf.localPosition.z); // Reset the x position to 0
         }
+    }
+
+    public void Reset()
+    {
+        keeperTf.localPosition = startPosition;
+        keeperRb.velocity = Vector3.zero;
     }
 }

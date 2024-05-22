@@ -13,10 +13,11 @@ public class HockeyAgent : Agent
     public GameObject puck;
     public GameObject enemy;
 
-    public Transform OptimalPosition;
+    public Vector3 startPosition;
     public float rotationSpeed = 100f;
     public float moveSpeed = 5f;
-    private float timeLimit = 20f; // Set this to the amount of time you want
+
+    public NPCKeeper keeperScript;
 
     private Rigidbody agentRb;
     private Transform agentTf;
@@ -25,28 +26,33 @@ public class HockeyAgent : Agent
     private Transform puckTf;
     private Vector3 lastAgentPosition; // Store the agent's last position for collision detection
 
-    private bool scoreMade;
-
     private int teamId;
 
+    private float lowVelocityTime; // Timer for tracking low velocity duration
+    public float velocityThreshold = 0.1f; // Velocity threshold to check against
+    public float maxLowVelocityDuration = 20f; // Maximum duration allowed for low velocity
 
     // Called when the Agent starts
     public override void Initialize()
     {
-        
         agentRb = GetComponent<Rigidbody>();
         agentTf = GetComponent<Transform>();
         puckRb = puck.GetComponent<Rigidbody>(); // Get the Rigidbody component from the puck
         puckTf = puck.GetComponent<Transform>();
+        keeperScript = enemy.GetComponent<NPCKeeper>();
         lastAgentPosition = agentRb.position;
+        startPosition = agentTf.localPosition;
 
-        teamId  = GetComponent<BehaviorParameters>().TeamId;
+        teamId = GetComponent<BehaviorParameters>().TeamId;
     }
-    
+
     public override void OnEpisodeBegin()
     {
+        keeperScript.Reset();
         // Reset puck's position
         puckTf.localPosition = new Vector3(Random.value * 5, 0.7f, Random.value * 7 - 3.5f);
+        agentTf.localPosition = startPosition;
+        agentRb.velocity = Vector3.zero;
 
         // Reset the puck's velocity
         puckRb.velocity = Vector3.zero;
@@ -66,10 +72,11 @@ public class HockeyAgent : Agent
         // Apply the force to the puck
         puckRb.AddForce(randomForce, ForceMode.Impulse);
 
-        scoreMade = false;
+        // Reset the low velocity timer
+        lowVelocityTime = 0f;
     }
 
-    public override void CollectObservations(VectorSensor sensor) //3 normal, 8 with puck , 9 now
+    public override void CollectObservations(VectorSensor sensor)
     {
         // sensor.AddObservation(agentRb.position);
         sensor.AddObservation(agentTf.localPosition.x);
@@ -85,26 +92,25 @@ public class HockeyAgent : Agent
         sensor.AddObservation(puckRb.velocity.x);
         float distanceToPuck = Vector3.Distance(agentTf.position, puckTf.position);
         sensor.AddObservation(distanceToPuck);
-
-        }
+    }
 
     public override void OnActionReceived(ActionBuffers actionBuffers)
     {
         var continuousActions = actionBuffers.ContinuousActions;
 
         // Move sideways
-        float moveActionSW = continuousActions[1]* 0.5f; // Assuming sideways movement is at index 0
+        float moveActionSW = continuousActions[1] * 0.5f; // Assuming sideways movement is at index 0
         Vector3 moveDirectionSW = transform.right * moveActionSW * moveSpeed;
 
         // Move forward or backward
-        float moveActionFW = continuousActions[0]* 0.5f; // Assuming forward/backward movement is at index 1
+        float moveActionFW = continuousActions[0] * 0.5f; // Assuming forward/backward movement is at index 1
         Vector3 moveDirectionFW = transform.forward * -moveActionFW * moveSpeed;
 
         // Apply the movement forces
         agentRb.AddForce(moveDirectionSW, ForceMode.VelocityChange);
         agentRb.AddForce(moveDirectionFW, ForceMode.VelocityChange);
-    
-        if (teamId == 0 && agentTf.localPosition.x >-1.0f) // If the agent is on team 0 and has moved to the positive side of the table
+
+        if (teamId == 0 && agentTf.localPosition.x > -1.0f) // If the agent is on team 0 and has moved to the positive side of the table
         {
             agentTf.localPosition = new Vector3(-1.0f, agentTf.localPosition.y, agentTf.localPosition.z); // Reset the x position to 0
         }
@@ -112,14 +118,26 @@ public class HockeyAgent : Agent
         {
             agentTf.localPosition = new Vector3(1.0f, agentTf.localPosition.y, agentTf.localPosition.z); // Reset the x position to 0
         }
+
+        // Check puck's velocity
+        if (puckRb.velocity.magnitude < velocityThreshold)
+        {
+            lowVelocityTime += Time.deltaTime;
+            if (lowVelocityTime > maxLowVelocityDuration)
+            {
+                EndEpisode();
+            }
+        }
+        else
+        {
+            lowVelocityTime = 0f;
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.transform.CompareTag("Puck"))
         {
-            scoreMade = true;
-
             AddReward(0.1f);
             // Calculate the movement vector of the parent object
             Vector3 agentMovement = agentRb.position - lastAgentPosition;
@@ -129,11 +147,11 @@ public class HockeyAgent : Agent
             Rigidbody puckRb = collision.gameObject.GetComponent<Rigidbody>();
             if (puckRb != null)
             {
-                puckRb.velocity += agentMovement*0.1f;
+                puckRb.velocity += agentMovement * 0.1f;
             }
         }
-
     }
+
     public override void Heuristic(in ActionBuffers actionsOut)
     {
         var continuousActionsOut = actionsOut.ContinuousActions;
