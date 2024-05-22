@@ -2,6 +2,8 @@ conda activate unity_ml
 
 mlagents-learn Assets/config/Nick/HockeyAgent.yaml --run-id=HockeyAgent --force
 
-mlagents-learn Assets/config/Nick/HockeyAgentTeam.yaml --run-id=HockeyAgent --time-scale=1 --force
+mlagents-learn Assets/config/Nick/HockeyAgentTeam.yaml --run-id=HockeyAgent --force
+
+--time-scale=1 
 
 tensorboard --logdir results
