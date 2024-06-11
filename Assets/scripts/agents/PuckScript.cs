@@ -5,17 +5,13 @@ using Unity.MLAgents;
 
 public class PuckScript : MonoBehaviour
 {
-    public GameObject player; //player
-    public GameObject enemy; //enemy
-    public GameObject playerGoal;
-    public GameObject enemyGoal;
-    public Transform playerOptimalPosition;
-    public Transform enemyOptimalPosition;
+    // public GameObject red; //red
+    public GameObject blue; //blue
+    public GameObject redGoal;
+    public GameObject blueGoal;
 
-    private HockeyAgent playerAgent; //player agent
-    private HockeyAgent enemyAgent; //enemy agent
-    private Transform playerTransform; //player transform
-    private Transform enemyTransform; //enemy transform
+    private HockeyAgent redAgent; //red agent
+    private HockeyAgent blueAgent; //blue agent
 
     // private HockeyAgent lastAgentToHitPuck; // Keep track of the last agent that hit the puck
 
@@ -34,35 +30,29 @@ public class PuckScript : MonoBehaviour
     //     }
     // }
     void Start () {
-        playerAgent = player.GetComponent<HockeyAgent>();
-        enemyAgent = enemy.GetComponent<HockeyAgent>();
-        playerTransform = player.GetComponent<Transform>();
-        enemyTransform = enemy.GetComponent<Transform>();
+        // redAgent = red.GetComponent<HockeyAgent>();
+        blueAgent = blue.GetComponent<HockeyAgent>();
     }
     private void OnTriggerEnter(Collider other)
     {
 
-        float distanceToOptimalPositionPlayer = playerTransform.position.x-playerOptimalPosition.position.x;
-        float distanceToOptimalPositionEnemy = enemyTransform.position.x-enemyOptimalPosition.position.x;
+        float reward = 1f;
 
-        float reward1 = 1f / (1f + distanceToOptimalPositionPlayer);
-        float reward2 = 1f / (1f + distanceToOptimalPositionEnemy);
-
-        // Check if the entering collider is the player's goal
-        if (other.gameObject == playerGoal)
+        // Check if the entering collider is the red's goal
+        if (other.gameObject == redGoal)
         {
-            playerAgent.AddReward(-1f + reward1); 
-            enemyAgent.AddReward(1f + reward2); 
-            playerAgent.EndEpisode(); // End the episode for agent1
-            enemyAgent.EndEpisode(); // End the episode for agent2
+            // redAgent.AddReward(-1f*reward); 
+            blueAgent.AddReward(reward); 
+            // redAgent.EndEpisode(); // End the episode for agent1
+            blueAgent.EndEpisode(); // End the episode for agent2
         }
-        // Check if the entering collider is the enemy's goal
-        else if (other.gameObject == enemyGoal)
+        // Check if the entering collider is the blue's goal
+        else if (other.gameObject == blueGoal)
         {
-            playerAgent.AddReward(1f+reward1); 
-            enemyAgent.AddReward(-1f+reward2); 
-            playerAgent.EndEpisode(); // End the episode for agent1
-            enemyAgent.EndEpisode(); // End the episode for agent2
+            // redAgent.AddReward(reward); 
+            blueAgent.AddReward(-1f*reward); 
+            // redAgent.EndEpisode(); // End the episode for agent1
+            blueAgent.EndEpisode(); // End the episode for agent2
         }
     }
 }

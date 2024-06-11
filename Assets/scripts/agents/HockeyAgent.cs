@@ -48,7 +48,10 @@ public class HockeyAgent : Agent
 
     public override void OnEpisodeBegin()
     {
-        keeperScript.Reset();
+        if (keeperScript != null)
+        {
+            keeperScript.Reset();
+        }
         // Reset puck's position
         puckTf.localPosition = new Vector3(Random.value * 5, 0.7f, Random.value * 7 - 3.5f);
         agentTf.localPosition = startPosition;

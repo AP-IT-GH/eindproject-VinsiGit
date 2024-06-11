@@ -828,9 +828,12 @@ MonoBehaviour:
   MaxStep: 200000
   puck: {fileID: 7310280578544535430}
   enemy: {fileID: 2294825654964763267}
-  OptimalPosition: {fileID: 2410906252793735312}
+  startPosition: {x: 0, y: 0, z: 0}
   rotationSpeed: 100
   moveSpeed: 5
+  keeperScript: {fileID: 0}
+  velocityThreshold: 0.1
+  maxLowVelocityDuration: 20
 --- !u!1 &3465881260762267764
 GameObject:
   m_ObjectHideFlags: 0
@@ -1808,12 +1811,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1795a3d1867b4714484bfb89d3e26ebc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 2294825654964763267}
-  enemy: {fileID: 3340791893382215611}
-  playerGoal: {fileID: 7862801445665580531}
-  enemyGoal: {fileID: 4520143800969771361}
-  playerOptimalPosition: {fileID: 9169888737711168395}
-  enemyOptimalPosition: {fileID: 2410906252793735312}
+  blue: {fileID: 3340791893382215611}
+  redGoal: {fileID: 7862801445665580531}
+  blueGoal: {fileID: 4520143800969771361}
 --- !u!1 &7310982782724473722
 GameObject:
   m_ObjectHideFlags: 0
