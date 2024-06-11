@@ -8,7 +8,7 @@ using Unity.MLAgents.Policies;
 
 using Random = UnityEngine.Random;
 
-public class HockeyAgentTeam : Agent
+public class HockeyAgentTeamOld : Agent
 {
     public GameObject puck;
     public GameObject enemy;
@@ -49,7 +49,7 @@ public class HockeyAgentTeam : Agent
     {
 
         // Reset puck's position
-        puckTf.localPosition = new Vector3(0, 0.7f, 0); //Vector3(Random.value * 5, 0.7f, Random.value * 7 - 3.5f);
+        puckTf.localPosition = new Vector3(Random.value * 5, 0.7f, Random.value * 7 - 3.5f);
         agentTf.position = startPosition;
         agentRb.velocity = Vector3.zero;
 
@@ -64,7 +64,7 @@ public class HockeyAgentTeam : Agent
 
         // Define the magnitude factor for the force
         int direction = Random.Range(0, 2) * 2 - 1; // This will give you either -1 or 1
-        float forceMagnitude = direction * Random.Range(1f, 5f); // You can adjust this value as needed
+        float forceMagnitude = direction * Random.Range(50f, 100f); // You can adjust this value as needed
 
         float randomRotationAngle = Random.Range(-2f, 2f);
         Vector3 randomForce = new Vector3(1f, 0f, randomRotationAngle) * forceMagnitude;
@@ -90,8 +90,8 @@ public class HockeyAgentTeam : Agent
 
         sensor.AddObservation(puckRb.velocity.z);
         sensor.AddObservation(puckRb.velocity.x);
-        // float distanceToPuck = Vector3.Distance(agentTf.position, puckTf.position);
-        // sensor.AddObservation(distanceToPuck);
+        float distanceToPuck = Vector3.Distance(agentTf.position, puckTf.position);
+        sensor.AddObservation(distanceToPuck);
     }
 
     public override void OnActionReceived(ActionBuffers actionBuffers)
@@ -125,7 +125,6 @@ public class HockeyAgentTeam : Agent
             lowVelocityTime += Time.deltaTime;
             if (lowVelocityTime > maxLowVelocityDuration)
             {
-                AddReward(-0.1f);
                 EndEpisode();
             }
         }
@@ -139,7 +138,7 @@ public class HockeyAgentTeam : Agent
     {
         if (collision.transform.CompareTag("Puck"))
         {
-            // AddReward(0.1f);
+            AddReward(0.1f);
             // Calculate the movement vector of the parent object
             Vector3 agentMovement = agentRb.position - lastAgentPosition;
             lastAgentPosition = agentRb.position;

@@ -35,13 +35,13 @@ public class PuckScriptTeam : MonoBehaviour
         if (other.gameObject == playerGoal)
         {
             playerAgent.AddReward(reward); 
-            enemyAgent.AddReward(-reward); 
+            enemyAgent.AddReward(-reward/5); 
         }
         // Check if the entering collider is the enemy's goal
         else if (other.gameObject == enemyGoal)
         {
             enemyAgent.AddReward(reward); 
-            playerAgent.AddReward(-reward); 
+            playerAgent.AddReward(-reward/5); 
         }
 
         playerAgent.EndEpisode(); // End the episode for agent1
