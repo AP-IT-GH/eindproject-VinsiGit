@@ -273,7 +273,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 5220808950620541656}
@@ -1814,6 +1814,8 @@ MonoBehaviour:
   blue: {fileID: 3340791893382215611}
   redGoal: {fileID: 7862801445665580531}
   blueGoal: {fileID: 4520143800969771361}
+  scoreRedText: {fileID: 0}
+  scoreBlueText: {fileID: 0}
 --- !u!1 &7310982782724473722
 GameObject:
   m_ObjectHideFlags: 0

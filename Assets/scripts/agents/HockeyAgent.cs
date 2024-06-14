@@ -31,6 +31,7 @@ public class HockeyAgent : Agent
     private float lowVelocityTime; // Timer for tracking low velocity duration
     public float velocityThreshold = 0.1f; // Velocity threshold to check against
     public float maxLowVelocityDuration = 20f; // Maximum duration allowed for low velocity
+    public float maxPuckSpeed = 10f; // Define the maximum speed of the puck
 
     // Called when the Agent starts
     public override void Initialize()
