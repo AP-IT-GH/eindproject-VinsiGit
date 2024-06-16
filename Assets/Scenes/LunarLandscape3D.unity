@@ -1880,7 +1880,7 @@ PrefabInstance:
     - target: {fileID: 6598815579406187037, guid: 9f5a24a380916d14db9775daab4fe333,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4484,7 +4484,7 @@ PrefabInstance:
     - target: {fileID: 3338408454696700424, guid: 0f6ddad97400e8745ad125172756fb00,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 9.4
+      value: 9.3
       objectReference: {fileID: 0}
     - target: {fileID: 3338408454696700424, guid: 0f6ddad97400e8745ad125172756fb00,
         type: 3}
@@ -4525,6 +4525,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8200293295496925815, guid: 0f6ddad97400e8745ad125172756fb00,
+        type: 3}
+      propertyPath: m_Constraints
+      value: 116
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
@@ -7428,7 +7433,7 @@ PrefabInstance:
     - target: {fileID: 1891480811844689656, guid: 2b213e4edeb0c764d968408dd3e3cffd,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 10.078
+      value: 8.602
       objectReference: {fileID: 0}
     - target: {fileID: 1891480811844689656, guid: 2b213e4edeb0c764d968408dd3e3cffd,
         type: 3}
@@ -7613,7 +7618,7 @@ PrefabInstance:
     - target: {fileID: 5251285538045948663, guid: 2b213e4edeb0c764d968408dd3e3cffd,
         type: 3}
       propertyPath: m_RequestedTrackingOriginMode
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6228337653091113804, guid: 2b213e4edeb0c764d968408dd3e3cffd,
         type: 3}
@@ -7875,7 +7880,7 @@ MonoBehaviour:
     m_Reference: {fileID: 1010738217276881514, guid: c348712bda248c246b8c49b3db54643f,
       type: 3}
   m_RightHandSnapTurnAction:
-    m_UseReference: 1
+    m_UseReference: 0
     m_Action:
       m_Name: Right Hand Snap Turn
       m_Type: 0
@@ -7885,8 +7890,7 @@ MonoBehaviour:
       m_Interactions: 
       m_SingletonActionBindings: []
       m_Flags: 0
-    m_Reference: {fileID: -6493913391331992944, guid: c348712bda248c246b8c49b3db54643f,
-      type: 3}
+    m_Reference: {fileID: 0}
 --- !u!1001 &1724891824
 PrefabInstance:
   m_ObjectHideFlags: 0
