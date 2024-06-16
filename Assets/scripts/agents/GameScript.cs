@@ -6,21 +6,32 @@ using TMPro;
 public class GameScript : MonoBehaviour
 {
     public TMP_Text scoreToBeatText;
+    public GameObject countDown;
+    public TMP_Text countDownDisplay;
     public PuckScript puckScript;
+    public HockeyAgent agentScript;
     public GameObject pointsChoice;
+    public GameObject agent;
+    public GameObject playButton;
 
+    private GameObject puck;
     private bool gameStarted = false;
-    private int scoreToBeat = 3;
+    private int scoreToBeat = 1;
+
+    public void Start()
+    {
+        puck = agentScript.puck;
+    }
 
     public void FixedUpdate()
     {
         if (gameStarted)
         {
-            if (puckScript.redScore >= scoreToBeat)
+            if (puckScript.blueScore >= scoreToBeat)
             {
                 GameOver(winner: "The AI");
             }
-            else if (puckScript.blueScore >= scoreToBeat)
+            else if (puckScript.redScore >= scoreToBeat)
             {
                 GameOver(winner: "You");
             }
@@ -28,27 +39,76 @@ public class GameScript : MonoBehaviour
     }
     public void PressPlay()
     {
-        
+        countDown.SetActive(false);
+        playButton.SetActive(false);
+        pointsChoice.SetActive(true);
+    }
+
+    public void StartGame()
+    {
+        pointsChoice.SetActive(false);
+        countDown.SetActive(true);
+        gameStarted = true;
+        StartCoroutine(CountDownAndStart());
+    }
+
+    private IEnumerator CountDownAndStart()
+    {
+        countDownDisplay.text = "READY?";
+        yield return new WaitForSeconds(1f);
+
+        for (int i = 3; i > 0; i--)
+        {
+            countDownDisplay.text = i.ToString();
+            yield return new WaitForSeconds(1f);
+        }
+
+        countDownDisplay.text = "GO!";
+        yield return new WaitForSeconds(0.1f);
+
+        countDown.SetActive(false);
+        yield return new WaitForSeconds(0.05f);
+        puck.SetActive(true);
+        yield return new WaitForSeconds(0.05f);
+        agent.SetActive(true);
     }
 
     public void IncreaseScore()
     {
-        scoreToBeat += 3;
+        if (scoreToBeat < 5)
+        {
+            scoreToBeat = 5;
+        }
+        else
+        {
+            scoreToBeat += 5;
+        }
         scoreToBeatText.text = scoreToBeat.ToString();
     }
 
     public void DecreaseScore()
     {
-        if (scoreToBeat > 3)
+        if (scoreToBeat > 5)
         {
-            scoreToBeat -= 3;
+            scoreToBeat -= 5;
+        }
+        else
+        {
+            scoreToBeat = 1;
         }
         scoreToBeatText.text = scoreToBeat.ToString();
     }
 
     public void GameOver(string winner)
     {
+        puckScript.redScore = 0;
+        puckScript.blueScore = 0;
+
+        puck.SetActive(false);
+        agent.SetActive(false);
         //handle game over logic
-        //display winner won, play again?
+        countDown.SetActive(true);
+        countDownDisplay.text = $"{winner} won!";
+        //display winner play again?
     }
 }

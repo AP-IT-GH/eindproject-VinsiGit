@@ -1885,7 +1885,7 @@ PrefabInstance:
     - target: {fileID: 6598815579406187037, guid: 9f5a24a380916d14db9775daab4fe333,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3531,7 +3531,7 @@ GameObject:
   m_Component:
   - component: {fileID: 762847344}
   - component: {fileID: 762847343}
-  - component: {fileID: 762847342}
+  - component: {fileID: 762847345}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -3539,26 +3539,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &762847342
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 762847341}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SendPointerHoverToParent: 1
-  m_HorizontalAxis: Horizontal
-  m_VerticalAxis: Vertical
-  m_SubmitButton: Submit
-  m_CancelButton: Cancel
-  m_InputActionsPerSecond: 10
-  m_RepeatDelay: 0.5
-  m_ForceModuleActive: 0
 --- !u!114 &762847343
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3589,6 +3569,45 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &762847345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 762847341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab68ce6587aab0146b8dabefbd806791, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SendPointerHoverToParent: 1
+  m_ClickSpeed: 0.3
+  m_MoveDeadzone: 0.6
+  m_RepeatDelay: 0.5
+  m_RepeatRate: 0.1
+  m_TrackedDeviceDragThresholdMultiplier: 1.4
+  m_TrackedScrollDeltaMultiplier: 5
+  m_ActiveInputMode: 0
+  m_MaxTrackedDeviceRaycastDistance: 1000
+  m_EnableXRInput: 1
+  m_EnableMouseInput: 1
+  m_EnableTouchInput: 1
+  m_PointAction: {fileID: 0}
+  m_LeftClickAction: {fileID: 0}
+  m_MiddleClickAction: {fileID: 0}
+  m_RightClickAction: {fileID: 0}
+  m_ScrollWheelAction: {fileID: 0}
+  m_NavigateAction: {fileID: 0}
+  m_SubmitAction: {fileID: 0}
+  m_CancelAction: {fileID: 0}
+  m_EnableBuiltinActionsAsFallback: 1
+  m_EnableGamepadInput: 1
+  m_EnableJoystickInput: 1
+  m_HorizontalAxis: Horizontal
+  m_VerticalAxis: Vertical
+  m_SubmitButton: Submit
+  m_CancelButton: Cancel
 --- !u!4 &780455776 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6207105458883040838, guid: 3dd3c150131f27640b1caf4756afb056,
@@ -4476,6 +4495,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 205518799617667772, guid: 0f6ddad97400e8745ad125172756fb00,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2304938073249221002, guid: 0f6ddad97400e8745ad125172756fb00,
         type: 3}
       propertyPath: m_Name
@@ -4531,24 +4555,28 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3680378405643076352, guid: 0f6ddad97400e8745ad125172756fb00,
+        type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1029153577}
     - target: {fileID: 8200293295496925815, guid: 0f6ddad97400e8745ad125172756fb00,
         type: 3}
       propertyPath: m_Constraints
       value: 116
       objectReference: {fileID: 0}
+    - target: {fileID: 8380390678483700825, guid: 0f6ddad97400e8745ad125172756fb00,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 5450252502578336856, guid: 0f6ddad97400e8745ad125172756fb00, type: 3}
+    - {fileID: 6390629423398387050, guid: 0f6ddad97400e8745ad125172756fb00, type: 3}
+    - {fileID: 3662762188520953029, guid: 0f6ddad97400e8745ad125172756fb00, type: 3}
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3662762188520953029, guid: 0f6ddad97400e8745ad125172756fb00,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 6390629423398387050, guid: 0f6ddad97400e8745ad125172756fb00,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0f6ddad97400e8745ad125172756fb00, type: 3}
 --- !u!1001 &944328640
 PrefabInstance:
@@ -4884,6 +4912,12 @@ Transform:
   - {fileID: 725477832}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!20 &1029153577 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 8684118546502463708, guid: 2b213e4edeb0c764d968408dd3e3cffd,
+    type: 3}
+  m_PrefabInstance: {fileID: 1724766369}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1031814721
 PrefabInstance:
   m_ObjectHideFlags: 0
