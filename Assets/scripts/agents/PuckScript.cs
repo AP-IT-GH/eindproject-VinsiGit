@@ -43,7 +43,7 @@ public class PuckScript : MonoBehaviour
     //     }
     // }
 
-    void Update()
+    void FixedUpdate()
     {
         Rigidbody puckRb = GetComponent<Rigidbody>();
 

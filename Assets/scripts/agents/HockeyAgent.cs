@@ -54,7 +54,14 @@ public class HockeyAgent : Agent
             keeperScript.Reset();
         }
         // Reset puck's position
-        puckTf.localPosition = new Vector3(Random.value * 5, 0.7f, Random.value * 7 - 3.5f);
+        if (isTraining)
+        {
+            puckTf.localPosition = new Vector3(Random.value * 5, 0.7f, Random.value * 7 - 3.5f);
+        }
+        else
+        {
+            puckTf.localPosition = new Vector3(0, 0.7f, 0);
+        }
         agentTf.localPosition = startPosition;
         agentRb.velocity = Vector3.zero;
 
