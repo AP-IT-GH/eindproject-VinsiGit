@@ -193,7 +193,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8115421903624055588
 Transform:
   m_ObjectHideFlags: 0
@@ -302,7 +302,7 @@ MonoBehaviour:
   enemy: {fileID: 4597854009270430187}
   startPosition: {x: 0, y: 0, z: 0}
   rotationSpeed: 100
-  moveSpeed: 5
+  moveSpeed: 3
   keeperScript: {fileID: 0}
   velocityThreshold: 0.1
   maxLowVelocityDuration: 20
@@ -1836,7 +1836,7 @@ MonoBehaviour:
   enemy: {fileID: 1612255466419435752}
   startPosition: {x: 0, y: 0, z: 0}
   rotationSpeed: 100
-  moveSpeed: 5
+  moveSpeed: 3
   keeperScript: {fileID: 0}
   velocityThreshold: 0.1
   maxLowVelocityDuration: 20
@@ -2353,7 +2353,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4938241431347068790
 Transform:
   m_ObjectHideFlags: 0
