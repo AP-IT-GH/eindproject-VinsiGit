@@ -7,6 +7,9 @@ EditorBuildSettings:
   m_Scenes:
   - enabled: 1
     path: Assets/Scenes/LunarLandscape3D.unity
+    guid: 89db5ec79c0d80f4287953bf14c579e6
+  - enabled: 0
+    path: Assets/Scenes/LunarOld.unity
     guid: f937c9e2abf1238459490371a1163277
   - enabled: 0
     path: Assets/Scenes/SampleScene.unity
