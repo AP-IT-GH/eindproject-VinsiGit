@@ -20,10 +20,11 @@ public class PuckScript : MonoBehaviour
     public float maxVolume = 1f;
     public float minSpeedChangeForSound = 2f; // Minimale snelheidsverandering om als 'hit' te tellen
 
+    public int blueScore = 0;
+    public int redScore = 0;
+
     // Keeping track of the scores
     private bool canPlaySound = true;
-    private int blueScore = 0;
-    private int redScore = 0;
     private Vector3 lastFrameVelocity;
 
     // private HockeyAgent lastAgentToHitPuck; // Keep track of the last agent that hit the puck
