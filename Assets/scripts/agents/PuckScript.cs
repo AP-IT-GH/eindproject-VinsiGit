@@ -36,6 +36,16 @@ public class PuckScript : MonoBehaviour
     //         lastAgentToHitPuck = agent;
     //     }
     // }
+    public float maxPuckSpeed = 10f; // Step 1: Define the maximum speed of the puck
+
+    void Update()
+    {
+        Rigidbody puckRb = GetComponent<Rigidbody>();
+        if (puckRb.velocity.magnitude > maxPuckSpeed) // Check if the current speed exceeds the maximum speed
+        {
+            puckRb.velocity = puckRb.velocity.normalized * maxPuckSpeed; // Scale down to the maximum speed
+        }
+    }
     void Start () {
         // redAgent = red.GetComponent<HockeyAgent>();
         blueAgent = blue.GetComponent<HockeyAgent>();

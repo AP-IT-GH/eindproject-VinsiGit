@@ -8,7 +8,7 @@ using Unity.MLAgents.Policies;
 
 using Random = UnityEngine.Random;
 
-public class HockeyAgent : Agent
+public class HockeyAgentPlayer : Agent
 {
     public GameObject puck;
     public GameObject enemy;
@@ -32,7 +32,6 @@ public class HockeyAgent : Agent
     public float velocityThreshold = 0.1f; // Velocity threshold to check against
     public float maxLowVelocityDuration = 20f; // Maximum duration allowed for low velocity
 
-    public bool isTraining = true;
     // Called when the Agent starts
     public override void Initialize()
     {
@@ -63,11 +62,10 @@ public class HockeyAgent : Agent
 
         // Random rotation between 50 and 60 degrees
         Quaternion randomRotation = Quaternion.Euler(0f, 0f, 0f);
+
         // Apply random rotation to the puck
         puckTf.localRotation = randomRotation;
 
-        if (isTraining)
-        {
         // Define the magnitude factor for the force
         float forceMagnitude = Random.Range(50f, 100f); // You can adjust this value as needed
 
@@ -76,7 +74,7 @@ public class HockeyAgent : Agent
 
         // Apply the force to the puck
         puckRb.AddForce(randomForce, ForceMode.Impulse);
-        }
+
         // Reset the low velocity timer
         lowVelocityTime = 0f;
     }
