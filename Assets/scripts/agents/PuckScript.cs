@@ -38,7 +38,7 @@ public class PuckScript : MonoBehaviour
     // }
     public float maxPuckSpeed = 10f; // Step 1: Define the maximum speed of the puck
 
-    void Update()
+    void FixedUpdate()
     {
         Rigidbody puckRb = GetComponent<Rigidbody>();
         if (puckRb.velocity.magnitude > maxPuckSpeed) // Check if the current speed exceeds the maximum speed
