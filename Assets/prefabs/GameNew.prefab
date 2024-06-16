@@ -567,9 +567,9 @@ MonoBehaviour:
   scoreRedText: {fileID: 6973103608520888825}
   scoreBlueText: {fileID: 8826341857986791130}
   hitSound: {fileID: 8300000, guid: 4b2ecefc6a5b4ee4a99bcb779097d57d, type: 3}
-  maxVolume: 1
-  volumeScaleFactor: 0.1
   maxPuckSpeed: 5
+  maxVolume: 1
+  minSpeedChangeForSound: 2
 --- !u!1 &2304938073249221002
 GameObject:
   m_ObjectHideFlags: 0
@@ -1655,7 +1655,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4520143800969771361}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -1740,7 +1740,7 @@ Transform:
   m_GameObject: {fileID: 4597854009270430187}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 7.5, y: 1.1, z: 0}
+  m_LocalPosition: {x: 7.21, y: 1.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2366,7 +2366,7 @@ Transform:
   m_GameObject: {fileID: 6539454249773479260}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -7.5, y: 1, z: 0}
+  m_LocalPosition: {x: -6.97, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2852,7 +2852,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7862801445665580531}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
