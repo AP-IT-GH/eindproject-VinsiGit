@@ -113,11 +113,11 @@ public class PuckScript : MonoBehaviour
         if (scoreRedText != null)
         {
             // scoreText.text = "Red: " + redScore.ToString() + " - Blue: " + blueScore.ToString();
-            scoreRedText.text = "Red: " + redScore.ToString();
+            scoreRedText.text = "Red:" + redScore.ToString();
         }
         if (scoreBlueText != null)
         {
-            scoreBlueText.text = "Blue: " + blueScore.ToString();
+            scoreBlueText.text = "Blue:" + blueScore.ToString();
         }
     }
 
