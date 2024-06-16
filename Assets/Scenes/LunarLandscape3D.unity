@@ -5604,7 +5604,10 @@ MonoBehaviour:
   blueGoal: {fileID: 0}
   scoreRedText: {fileID: 0}
   scoreBlueText: {fileID: 0}
+  hitSound: {fileID: 0}
   maxPuckSpeed: 10
+  maxVolume: 1
+  minSpeedChangeForSound: 2
 --- !u!1 &1328898107
 GameObject:
   m_ObjectHideFlags: 0
