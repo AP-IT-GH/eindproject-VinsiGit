@@ -15,10 +15,16 @@ public class PuckScript : MonoBehaviour
     private HockeyAgent blueAgent; //blue agent
     public TMP_Text scoreRedText;
     public TMP_Text scoreBlueText;
+    public AudioClip hitSound;
+    public float maxPuckSpeed = 10f;
+    public float maxVolume = 1f;
+    public float minSpeedChangeForSound = 2f; // Minimale snelheidsverandering om als 'hit' te tellen
 
     // Keeping track of the scores
+    private bool canPlaySound = true;
     private int blueScore = 0;
     private int redScore = 0;
+    private Vector3 lastFrameVelocity;
 
     // private HockeyAgent lastAgentToHitPuck; // Keep track of the last agent that hit the puck
 
@@ -36,16 +42,41 @@ public class PuckScript : MonoBehaviour
     //         lastAgentToHitPuck = agent;
     //     }
     // }
-    public float maxPuckSpeed = 10f; // Step 1: Define the maximum speed of the puck
 
     void Update()
     {
         Rigidbody puckRb = GetComponent<Rigidbody>();
-        if (puckRb.velocity.magnitude > maxPuckSpeed) // Check if the current speed exceeds the maximum speed
+
+        // Bereken de snelheidsverandering
+        float velocityChange = (puckRb.velocity - lastFrameVelocity).magnitude;
+
+        // Speel geluid af alleen bij een significante snelheidsverandering en als de cooldown voorbij is
+        if (canPlaySound && velocityChange > minSpeedChangeForSound)
         {
-            puckRb.velocity = puckRb.velocity.normalized * maxPuckSpeed; // Scale down to the maximum speed
+            float hitIntensity = velocityChange / maxPuckSpeed;
+            float volume = Mathf.Min(hitIntensity, maxVolume);
+            AudioSource.PlayClipAtPoint(hitSound, transform.position, volume);
+
+            StartCoroutine(SoundCooldown());
         }
+
+        // Beperk de snelheid van de puck
+        if (puckRb.velocity.magnitude > maxPuckSpeed)
+        {
+            puckRb.velocity = puckRb.velocity.normalized * maxPuckSpeed;
+        }
+
+        // Update lastFrameVelocity voor de volgende frame
+        lastFrameVelocity = puckRb.velocity;
     }
+
+    IEnumerator SoundCooldown()
+    {
+        canPlaySound = false;
+        yield return new WaitForSeconds(0.1f); // Kortere cooldown om snelle opeenvolgende hits toe te staan
+        canPlaySound = true;
+    }
+
     void Start () {
         // redAgent = red.GetComponent<HockeyAgent>();
         blueAgent = blue.GetComponent<HockeyAgent>();

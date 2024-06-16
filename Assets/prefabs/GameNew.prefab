@@ -566,6 +566,9 @@ MonoBehaviour:
   blueGoal: {fileID: 4520143800969771361}
   scoreRedText: {fileID: 6973103608520888825}
   scoreBlueText: {fileID: 8826341857986791130}
+  hitSound: {fileID: 8300000, guid: 4b2ecefc6a5b4ee4a99bcb779097d57d, type: 3}
+  maxVolume: 1
+  volumeScaleFactor: 0.1
   maxPuckSpeed: 5
 --- !u!1 &2304938073249221002
 GameObject:
