@@ -1,5 +1,11 @@
 # HockAI Impact
 
+### Teamleden
+- Nicolai de Groot
+- Nick Vanreusel
+- Grim Van Daele
+- Joshua Hall
+
 ## Inleiding
 
 We willen een nostalgische air hockey-ervaring bieden, maar dan thuis. We kozen voor een Ai omdat dit een meer natuurlijk en menselijk gevoel te geven aan het spel. Hierdoor vermijden we dat je het gevoel krijgt dat je tegen een computer aan het spelen bent. Het VR aspect geeft meer vrijheid, inlevingsvermogen en zonder zich zorgen te maken over fysieke locaties. Dit maakt het gemakkelijk en leuk voor iedereen, zonder gedoe.
