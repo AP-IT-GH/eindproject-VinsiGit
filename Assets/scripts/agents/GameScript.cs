@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System;
 
 public class GameScript : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class GameScript : MonoBehaviour
     public GameObject pointsChoice;
     public GameObject agent;
     public GameObject playButton;
+    public GameObject rematchButton;
 
     private GameObject puck;
     private bool gameStarted = false;
@@ -21,6 +23,15 @@ public class GameScript : MonoBehaviour
     public void Start()
     {
         puck = agentScript.puck;
+        StartCoroutine(PreLoadAgent());
+    }
+
+    private IEnumerator PreLoadAgent()
+    {
+        agent.SetActive(true);
+        yield return new WaitForSeconds(1f);
+        agentScript.EndEpisode();
+        agent.SetActive(false);
     }
 
     public void FixedUpdate()
@@ -41,6 +52,7 @@ public class GameScript : MonoBehaviour
     {
         countDown.SetActive(false);
         playButton.SetActive(false);
+        rematchButton.SetActive(false);
         pointsChoice.SetActive(true);
     }
 
@@ -106,9 +118,8 @@ public class GameScript : MonoBehaviour
 
         puck.SetActive(false);
         agent.SetActive(false);
-        //handle game over logic
         countDown.SetActive(true);
         countDownDisplay.text = $"{winner} won!";
-        //display winner play again?
+        rematchButton.SetActive(true);
     }
 }
