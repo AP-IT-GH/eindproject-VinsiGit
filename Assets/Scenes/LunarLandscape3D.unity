@@ -4767,6 +4767,26 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 217887580305877648, guid: 0f6ddad97400e8745ad125172756fb00,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.004000316
+      objectReference: {fileID: 0}
+    - target: {fileID: 217887580305877648, guid: 0f6ddad97400e8745ad125172756fb00,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 10.530001
+      objectReference: {fileID: 0}
+    - target: {fileID: 867273618565608641, guid: 0f6ddad97400e8745ad125172756fb00,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 10.530001
+      objectReference: {fileID: 0}
+    - target: {fileID: 867273618565608641, guid: 0f6ddad97400e8745ad125172756fb00,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.004000316
+      objectReference: {fileID: 0}
     - target: {fileID: 2304938073249221002, guid: 0f6ddad97400e8745ad125172756fb00,
         type: 3}
       propertyPath: m_Name
@@ -4827,6 +4847,21 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1029153577}
+    - target: {fileID: 4553817485878482162, guid: 0f6ddad97400e8745ad125172756fb00,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7105406538691004655, guid: 0f6ddad97400e8745ad125172756fb00,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 10.530001
+      objectReference: {fileID: 0}
+    - target: {fileID: 7105406538691004655, guid: 0f6ddad97400e8745ad125172756fb00,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 5.672
+      objectReference: {fileID: 0}
     - target: {fileID: 8200293295496925815, guid: 0f6ddad97400e8745ad125172756fb00,
         type: 3}
       propertyPath: m_Constraints
@@ -4836,6 +4871,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8417716110286185612, guid: 0f6ddad97400e8745ad125172756fb00,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 10.53
+      objectReference: {fileID: 0}
+    - target: {fileID: 8417716110286185612, guid: 0f6ddad97400e8745ad125172756fb00,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -5.68
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
